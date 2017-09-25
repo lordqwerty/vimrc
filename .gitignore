@@ -1,3 +1,7 @@
 # Ignore pathogen makefile will install latest
 autoload/*
 colors/*
+
+# TAMARIN ignores
+syntax/*
+filetype.vim
