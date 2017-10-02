@@ -4,8 +4,8 @@
 
 default: install
 
-install: pathogen-install get-colours
-	@ln -s ./vimrc $HOME/.vimrc
+install: pathogen-install get-colors
+	@ln -s ./vimrc ${HOME}/.vimrc
 	@git submodule init
 	@git submodule update
 
@@ -17,7 +17,7 @@ update: pathogen-update
 	@echo "Checking for updates in ./bundle..."
 	@git submodule update 
 
-pahtogen-install:
+pathogen-install:
 	@mkdir -p ~/.vim/autoload ~/.vim/bundle
 	@curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 
