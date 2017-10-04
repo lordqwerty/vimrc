@@ -8,6 +8,7 @@ install: pathogen-install get-colors
 	@ln -s ./vimrc ${HOME}/.vimrc
 	@git submodule init
 	@git submodule update
+	@cd ${HOME}/.vim/bundle/vimproc.vim && make
 
 get-colors:
 	@mkdir -p ~/.vim/colors 

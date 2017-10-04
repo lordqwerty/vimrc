@@ -52,3 +52,6 @@
 [submodule "bundle/neosnippet-snippets"]
 	path = bundle/neosnippet-snippets
 	url = git@github.com:Shougo/neosnippet-snippets.git
+[submodule "bundle/vimproc.vim"]
+	path = bundle/vimproc.vim
+	url = https://github.com/Shougo/vimproc.vim.git
