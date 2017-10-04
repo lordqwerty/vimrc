@@ -20,11 +20,14 @@ set showcmd " Display incomplete commands
 set incsearch " Do incremental searching
 set nobackup " Do not create backup file
 set noswapfile " Do not create .swp files
+set nowrap
+set showmode
 set nowb
 set autoread " Reload files changed outside vim
 set hlsearch " Highlight last used search pattern
 set hidden
 set updatetime=100
+set cmdheight=1
 
 if has("mouse")
     set mouse=a
@@ -38,8 +41,8 @@ filetype indent on
 set autoindent
 set smartindent
 "set smarttab
-"set shiftwidth=2
-"set softtabstop=2
+set shiftwidth=2
+set softtabstop=2
 "set tabstop=2
 set expandtab
 
@@ -72,7 +75,7 @@ set tabstop=4
 
 " Linebreak on 500 characters
 set lbr
-set tw=500
+set tw=80
 
 set ai "Auto indent
 set si "Smart indent
@@ -122,6 +125,18 @@ cmap w!! %!sudo tee > /dev/null %
 set laststatus=2
 set noshowmode
 set t_Co=256
+
+" Syntastic Config
+map <Leader>s :SyntasticToggleMode<CR>
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
 
 " NERDTree Config
 autocmd StdinReadPre * let s:std_in=1
@@ -192,6 +207,7 @@ autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 autocmd FileType go setlocal omnifunc=go#complete#Complete
+autocmd FileType haskell setlocal omnifunc=haskell#complete#Complete
 
 " Enable heavy omni completion.
 if !exists('g:neocomplete#sources#omni#input_patterns')
@@ -207,6 +223,17 @@ let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 
 let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
 let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+
+" SuperTab
+let g:SuperTabDefaultCompletionType = '<c-x><c-o>'
+
+if has("gui_running")
+  imap <c-space> <c-r>=SuperTabAlternateCompletion("\<lt>c-x>\<lt>c-o>")<cr>
+else " no gui
+  if has("unix")
+    inoremap <Nul> <c-r>=SuperTabAlternateCompletion("\<lt>c-x>\<lt>c-o>")<cr>
+  endif
+endif
 
 " Golang Additions
 map <C-n> :cnext<CR>
@@ -254,3 +281,26 @@ let g:go_highlight_extra_types = 1
 let g:go_highlight_build_constraints = 1
 let g:go_highlight_generate_tags = 1
 
+" Haskell Additions
+
+" gch-mod
+map <silent> tw :GhcModTypeInsert<CR>
+map <silent> ts :GhcModSplitFunCase<CR>
+map <silent> tq :GhcModType<CR>
+map <silent> te :GhcModTypeClear<CR>
+
+" SuperTab haskell
+let g:haskellmode_completion_ghc = 1
+autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+
+" Tabularize haskell
+let g:haskell_tabular = 1
+
+vmap a= :Tabularize /=<CR>
+vmap a; :Tabularize /::<CR>
+vmap a- :Tabularize /-><CR>
+
+" ctrl-p 
+map <silent> <Leader>t :CtrlP()<CR>
+noremap <leader>b<space> :CtrlPBuffer<cr>
+let g:ctrlp_custom_ignore = '\v[\/]dist$'

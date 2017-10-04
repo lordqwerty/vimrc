@@ -4,4 +4,5 @@ colors/*
 
 # TAMARIN ignores
 syntax/*
+snippets/*
 filetype.vim

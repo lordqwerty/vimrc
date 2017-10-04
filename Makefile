@@ -1,10 +1,10 @@
 .PHONY: install update default colors
 .PHONY: pathogen-install pathogen-update 
-.PHONY: tamarin-syntax 
+.PHONY: snippets haskell-syntax tamarin-syntax 
 
 default: install
 
-install: pathogen-install get-colors
+install: pathogen-install get-colors haskell-syntax snippets
 	@ln -s ./vimrc ${HOME}/.vimrc
 	@git submodule init
 	@git submodule update
@@ -25,6 +25,15 @@ pathogen-install:
 pathogen-update:
 	@echo "Updating tpope Pathogen..."
 	@curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+
+snippets:
+	@mkdir snippets
+	@curl -k -LSso ~/.vim/snippets/haskell.snippet https://raw.githubusercontent.com/sdiehl/haskell-vim-proto/master/vim/snippets/haskell.snippets
+
+haskell-syntax:
+	@echo "Installing Haskell syntaxes..."
+	@curl -k -LSso ~/.vim/syntax/haskell.vim https://raw.githubusercontent.com/sdiehl/haskell-vim-proto/master/vim/syntax/haskell.vim
+	@curl -k -LSso ~/.vim/syntax/cabal.vim https://raw.githubusercontent.com/sdiehl/haskell-vim-proto/master/vim/syntax/cabal.vim
 
 tamarin-syntax:
 	@echo "Installing TAMARIN and SAPIC syntaxes..."
