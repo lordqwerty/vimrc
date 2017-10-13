@@ -13,6 +13,8 @@ install: pathogen-install get-colors haskell-syntax snippets
 get-colors:
 	@mkdir -p ~/.vim/colors 
 	@curl -k -LSso ~/.vim/colors/hybrid.vim https://raw.githubusercontent.com/w0ng/vim-hybrid/master/colors/hybrid.vim
+	@curl -k -LSso ~/.vim/colors/onedark.vim https://raw.githubusercontent.com/joshdick/onedark.vim/master/colors/onedark.vim
+	@curl -k -LSso ~/.vim/autoload/onedark.vim https://raw.githubusercontent.com/joshdick/onedark.vim/master/autoload/onedark.vim
 
 update: pathogen-update
 	@echo "Checking for updates in ./bundle..."

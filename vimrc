@@ -7,9 +7,10 @@ set autowrite
 let mapleader = ","
 
 syntax enable
-let g:hybrid_custom_term_colors = 1
+"let g:hybrid_custom_term_colors = 1
 set background=dark
-colorscheme hybrid
+colorscheme onedark
+let g:airline_theme='bubblegum'
 highlight LineNr ctermfg=grey
 
 set number " Enable line numbers
