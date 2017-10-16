@@ -1,5 +1,5 @@
 .PHONY: install update default colors
-.PHONY: pathogen-install pathogen-update 
+.PHONY: pathogen-install pathogen-update force-submodule-update
 .PHONY: snippets haskell-syntax tamarin-syntax 
 
 default: install
@@ -9,6 +9,9 @@ install: pathogen-install get-colors haskell-syntax snippets
 	@git submodule init
 	@git submodule update
 	@cd ${HOME}/.vim/bundle/vimproc.vim && make
+
+force-submodule-update:
+	@git submodule update --init --force --remote
 
 get-colors:
 	@mkdir -p ~/.vim/colors 
