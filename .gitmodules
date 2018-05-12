@@ -64,3 +64,9 @@
 [submodule "bundle/supertab"]
 	path = bundle/supertab
 	url = https://github.com/ervandew/supertab.git
+[submodule "ctrlp.vim"]
+	path = ctrlp.vim
+	url = https://github.com/kien/ctrlp.vim
+[submodule "vim-airline"]
+	path = vim-airline
+	url = https://github.com/bling/vim-airline
