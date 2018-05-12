@@ -1,4 +1,8 @@
 execute pathogen#infect()
+execute pathogen#helptags()
+
+let g:molokai_original = 1
+let g:airline_theme="molokai"
 
 " Use Vim settings, rather than Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
@@ -8,9 +12,9 @@ let mapleader = ","
 
 syntax enable
 "let g:hybrid_custom_term_colors = 1
-set background=dark
-colorscheme onedark
-let g:airline_theme='bubblegum'
+"set background=dark
+"colorscheme onedark
+"let g:airline_theme='molokai'
 highlight LineNr ctermfg=grey
 
 set number " Enable line numbers
