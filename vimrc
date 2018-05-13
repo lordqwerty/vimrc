@@ -1,8 +1,9 @@
 execute pathogen#infect()
 execute pathogen#helptags()
 
-let g:molokai_original = 1
-let g:airline_theme="molokai"
+set background=dark
+colorscheme hybrid
+let g:airline_theme="hybrid"
 
 " Use Vim settings, rather than Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.

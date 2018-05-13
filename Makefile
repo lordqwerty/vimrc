@@ -1,6 +1,6 @@
 .PHONY: install update default colors
-.PHONY: pathogen-install pathogen-update force-submodule-update
-.PHONY: snippets haskell-syntax tamarin-syntax 
+.PHONY: pathogen-install pathogen-update submodule-update
+.PHONY: snippets tamarin-syntax 
 
 default: install
 
@@ -10,14 +10,12 @@ install: pathogen-install get-colors
 	@git submodule update
 	@cd ${HOME}/.vim/bundle/vimproc.vim && make
 
-force-submodule-update:
+submodule-update:
 	@git submodule update --init --force --remote
 
 get-colors:
 	@mkdir -p ~/.vim/colors 
 	@curl -k -LSso ~/.vim/colors/hybrid.vim https://raw.githubusercontent.com/w0ng/vim-hybrid/master/colors/hybrid.vim
-	@curl -k -LSso ~/.vim/colors/onedark.vim https://raw.githubusercontent.com/joshdick/onedark.vim/master/colors/onedark.vim
-	@curl -k -LSso ~/.vim/autoload/onedark.vim https://raw.githubusercontent.com/joshdick/onedark.vim/master/autoload/onedark.vim
 
 update: pathogen-update
 	@echo "Checking for updates in ./bundle..."
