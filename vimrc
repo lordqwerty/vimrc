@@ -4,6 +4,7 @@ execute pathogen#helptags()
 set background=dark
 colorscheme hybrid
 let g:airline_theme="hybrid"
+"let g:hybrid_custom_term_colors = 1
 
 " Use Vim settings, rather than Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
@@ -12,7 +13,6 @@ set autowrite
 let mapleader = ","
 
 syntax enable
-"let g:hybrid_custom_term_colors = 1
 "set background=dark
 "colorscheme onedark
 "let g:airline_theme='molokai'
@@ -30,7 +30,10 @@ set nowrap
 set showmode
 set nowb
 set autoread " Reload files changed outside vim
+
 set hlsearch " Highlight last used search pattern
+nnoremap <F3> :set hlsearch!<CR>
+
 set hidden
 set updatetime=100
 set cmdheight=1
@@ -287,26 +290,15 @@ let g:go_highlight_extra_types = 1
 let g:go_highlight_build_constraints = 1
 let g:go_highlight_generate_tags = 1
 
-" Haskell Additions
-
-" gch-mod
-map <silent> tw :GhcModTypeInsert<CR>
-map <silent> ts :GhcModSplitFunCase<CR>
-map <silent> tq :GhcModType<CR>
-map <silent> te :GhcModTypeClear<CR>
-
-" SuperTab haskell
-let g:haskellmode_completion_ghc = 1
-autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
-
-" Tabularize haskell
-let g:haskell_tabular = 1
-
-vmap a= :Tabularize /=<CR>
-vmap a; :Tabularize /::<CR>
-vmap a- :Tabularize /-><CR>
-
 " ctrl-p 
 map <silent> <Leader>t :CtrlP()<CR>
 noremap <leader>b<space> :CtrlPBuffer<cr>
 let g:ctrlp_custom_ignore = '\v[\/]dist$'
+
+" columncolor
+if exists('+colorcolumn')
+  set colorcolumn=80
+  highlight ColorColumn ctermbg=8
+else
+  au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+endif
