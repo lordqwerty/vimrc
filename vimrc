@@ -38,6 +38,9 @@ set hidden
 set updatetime=100
 set cmdheight=1
 
+set splitbelow
+set splitright
+
 if has("mouse")
     set mouse=a
 endif
@@ -116,6 +119,15 @@ if !exists(":DiffOrig")
     command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
     \ | wincmd p | diffthis
 endif
+
+" Interpret .md files, etc. as .markdown
+	let g:vimwiki_ext2syntax = {'.Rmd': 'markdown', '.rmd': 'markdown','.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
+
+" Make calcurse notes markdown compatible:
+	autocmd BufRead,BufNewFile /tmp/calcurse*,~/.calcurse/notes/* set filetype=markdown
+
+" Spell-check set to F6:
+	map <F6> :setlocal spell! spelllang=en_gb<CR>
 
 " Tweak undo behaviour
 " CTRL-U in insert mode deletes a lot. Use CTRL-G u to first break undo,
